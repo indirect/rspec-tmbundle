@@ -3,8 +3,12 @@ require 'rubygems'
 
 ENV['TM_PROJECT_DIRECTORY'] ||= File.dirname(ENV['TM_FILEPATH'])
 rspec_rails_plugin = File.join(ENV['TM_PROJECT_DIRECTORY'],'vendor','plugins','rspec','lib')
+bundler_gemfile = File.join(ENV['TM_PROJECT_DIRECTORY'], 'Gemfile')
 
-if File.directory?(rspec_rails_plugin)
+if File.exists?(bundler_gemfile)
+  bundle_path = (File.read(bundler_gemfile) =~ (/bundle_path[ (]+['"](.*?)['"]/) && $1) || "vendor/gems"
+  require File.join(ENV['TM_PROJECT_DIRECTORY'], bundle_path, "environment")
+elsif File.directory?(rspec_rails_plugin)
   $LOAD_PATH.unshift(rspec_rails_plugin)
 elsif ENV['TM_RSPEC_HOME']
   rspec_lib = File.join(ENV['TM_RSPEC_HOME'], 'lib')
