@@ -79,13 +79,13 @@ EOF
         ]
       
         expect_twins [
-          "/a/full/path/app/controllers/application.rb",
+          "/a/full/path/app/controllers/application_controller.rb",
           "/a/full/path/spec/controllers/application_controller_spec.rb"
         ]
       
         expect_twins [
           "/a/full/path/spec/controllers/application_controller_spec.rb",
-          "/a/full/path/app/controllers/application.rb"
+          "/a/full/path/app/controllers/application_controller.rb"
         ]
       
         expect_twins [
